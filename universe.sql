@@ -302,6 +302,9 @@ INSERT INTO public.moon VALUES (17, 6, 'moon 17', 167, 37);
 INSERT INTO public.moon VALUES (18, 6, 'moon 18', 168, 38);
 INSERT INTO public.moon VALUES (19, 7, 'moon 19', 169, 39);
 INSERT INTO public.moon VALUES (20, 8, 'moon 20', 170, 40);
+INSERT INTO public.moon VALUES (21, 1, 'sat 1', 17, 4);
+INSERT INTO public.moon VALUES (22, 1, 'sat 2', 18, 4);
+INSERT INTO public.moon VALUES (23, 1, 'sat 3', 19, 4);
 
 
 --
@@ -319,12 +322,16 @@ INSERT INTO public.planet VALUES (8, 5, 'planet 9', 50, false, false);
 INSERT INTO public.planet VALUES (9, 5, 'planet 10', 50, false, false);
 INSERT INTO public.planet VALUES (10, 6, 'planet 11', 80, false, false);
 INSERT INTO public.planet VALUES (11, 6, 'planet 12', 50, false, false);
+INSERT INTO public.planet VALUES (12, 6, 'planet 13', 50, false, false);
 
 
 --
 -- Data for Name: satellite; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.satellite VALUES (1, 1, 'sat 1', 17, 4);
+INSERT INTO public.satellite VALUES (2, 1, 'sat 2', 18, 4);
+INSERT INTO public.satellite VALUES (3, 1, 'sat 3', 19, 4);
 
 
 --
@@ -350,21 +357,21 @@ SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 6, true);
 -- Name: moon_moon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.moon_moon_id_seq', 20, true);
+SELECT pg_catalog.setval('public.moon_moon_id_seq', 23, true);
 
 
 --
 -- Name: planet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.planet_planet_id_seq', 11, true);
+SELECT pg_catalog.setval('public.planet_planet_id_seq', 12, true);
 
 
 --
 -- Name: satellite_satellite_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.satellite_satellite_id_seq', 1, false);
+SELECT pg_catalog.setval('public.satellite_satellite_id_seq', 3, true);
 
 
 --
@@ -372,6 +379,14 @@ SELECT pg_catalog.setval('public.satellite_satellite_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.star_star_id_seq', 6, true);
+
+
+--
+-- Name: galaxy galaxy_name; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT galaxy_name UNIQUE (name);
 
 
 --
@@ -383,11 +398,27 @@ ALTER TABLE ONLY public.galaxy
 
 
 --
+-- Name: moon moon_name; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_name UNIQUE (name);
+
+
+--
 -- Name: moon moon_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
 
 ALTER TABLE ONLY public.moon
     ADD CONSTRAINT moon_pkey PRIMARY KEY (moon_id);
+
+
+--
+-- Name: planet planet_name; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT planet_name UNIQUE (name);
 
 
 --
@@ -399,11 +430,27 @@ ALTER TABLE ONLY public.planet
 
 
 --
+-- Name: satellite satellite_name; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.satellite
+    ADD CONSTRAINT satellite_name UNIQUE (name);
+
+
+--
 -- Name: satellite satellite_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
 
 ALTER TABLE ONLY public.satellite
     ADD CONSTRAINT satellite_pkey PRIMARY KEY (satellite_id);
+
+
+--
+-- Name: star star_name; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT star_name UNIQUE (name);
 
 
 --
@@ -449,4 +496,5 @@ ALTER TABLE ONLY public.planet
 --
 -- PostgreSQL database dump complete
 --
+
 
